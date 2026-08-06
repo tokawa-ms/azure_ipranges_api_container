@@ -1,0 +1,48 @@
+{
+  "changeNumber": 100,
+  "cloud": "Public",
+  "values": [
+    {
+      "name": "Storage",
+      "id": "Storage",
+      "properties": {
+        "changeNumber": 10,
+        "region": "",
+        "platform": "Azure",
+        "systemService": "Storage",
+        "addressPrefixes": [
+          "10.0.0.0/24",
+          "2001:db8::/48"
+        ]
+      }
+    },
+    {
+      "name": "Storage.JapanEast",
+      "id": "Storage.JapanEast",
+      "properties": {
+        "changeNumber": 11,
+        "region": "japaneast",
+        "platform": "Azure",
+        "systemService": "Storage",
+        "addressPrefixes": [
+          "10.0.0.0/25",
+          "2001:db8::/49"
+        ]
+      }
+    },
+    {
+      "name": "AzureCloud",
+      "id": "AzureCloud",
+      "properties": {
+        "changeNumber": 12,
+        "region": "",
+        "platform": "Azure",
+        "systemService": "",
+        "addressPrefixes": [
+          "10.0.0.64/26",
+          "192.0.2.0/24"
+        ]
+      }
+    }
+  ]
+}

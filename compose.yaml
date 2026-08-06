@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: azure-ipranges-api:local
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      DATA_DIR: "${DATA_DIR:-/data}"
+      CACHE_TTL_SECONDS: "${CACHE_TTL_SECONDS:-604800}"
+      DOWNLOAD_PAGE_URL: "${DOWNLOAD_PAGE_URL:-https://www.microsoft.com/en-us/download/details.aspx?id=56519}"
+      HTTP_TIMEOUT_SECONDS: "${HTTP_TIMEOUT_SECONDS:-30}"
+      HTTP_RETRY_COUNT: "${HTTP_RETRY_COUNT:-3}"
+      LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+    volumes:
+      - azure-ipranges-data:/data
+    restart: unless-stopped
+    init: true
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen("http://127.0.0.1:8000/health/ready",
+          timeout=5).read()
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  azure-ipranges-data:

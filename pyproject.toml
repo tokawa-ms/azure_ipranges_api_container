@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=80,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "azure-ipranges-api"
+version = "0.1.0"
+license = "MIT"
+authors = [{ name = "tokawa-ms" }]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.116,<1",
+    "uvicorn[standard]>=0.35,<1",
+    "httpx>=0.28.1,<1",
+    "pydantic-settings>=2.10,<3",
+    "filelock>=3.18,<4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4,<9",
+    "pytest-asyncio>=1.0,<2",
+    "respx>=0.22,<1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
